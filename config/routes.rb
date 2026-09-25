@@ -1,4 +1,8 @@
+# URLとアクションメソッドの紐付け
 Rails.application.routes.draw do
+  get "hoge/index"
+  get "hoge/show"
+  get "hoge/new"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -13,4 +17,9 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   get "hello" => "hello#index"
+
+  get "hello/view"
+
+  get "hello/test" => "hello#test"
 end
+
