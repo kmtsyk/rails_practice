@@ -1,5 +1,5 @@
 services: # ここから下に、起動したいサービス一覧を書く
-  web: # webという名前のコンテナ
+  web: # サービス名
     build: . # そのコンテナは今のフォルダのDockerfileからビルド
     container_name: rails_web
     volumes:
