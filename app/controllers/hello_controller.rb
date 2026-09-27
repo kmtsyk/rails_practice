@@ -10,4 +10,9 @@ class HelloController < ApplicationController
     def test
         @msg = "Hello, test!"
     end
+
+    def list
+        @books = Book.all
+        # binding.break
+    end
 end
