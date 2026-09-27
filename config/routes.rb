@@ -16,9 +16,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  get "hello" => "hello#index"
+  # URL => 対応アクション
+  get "hello" => "hello#index" # ex) helloコントローラのindexアクションを呼び出す
 
-  get "hello/view"
+  get "hello/view" # 省略形
+
+  get "hello/list"
 
   get "hello/test" => "hello#test"
 end

@@ -1,3 +1,4 @@
+# コンテナ起動時の指示
 services: # ここから下に、起動したいサービス一覧を書く
   web: # サービス名
     build: . # そのコンテナは今のフォルダのDockerfileからビルド
@@ -11,10 +12,12 @@ services: # ここから下に、起動したいサービス一覧を書く
     #   target: /usr/local/bundle
     ports:
       - "3001:3001" # ホストの3001番ポートにアクセスしたら、コンテナの3001番に流す。
+      - "12345:12345" # 追加: デバッガ接続用ポート
     environment:
       RAILS_ENV: development # 環境変数RAILS_MASTER_KEYを渡す
     stdin_open: true # 標準入力を開いたままにする(キーボード入力を渡しやすくする)
     tty: true # ターミナルを開いたままにする(コンテナのターミナルを開いたままにする)
+    command: bundle exec rdbg --open --nonstop --host 0.0.0.0 --port 12345 -c -- bin/rails server -b 0.0.0.0 -p 3001
   # db:
   #   image: postgres:17
   #   volumes:

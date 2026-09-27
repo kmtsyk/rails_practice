@@ -1,3 +1,5 @@
+# デフォルトの振る舞い（初期設定）
+
 # https://docs.docker.com/guides/ruby/containerize/
 # Ruby 3.4.8が入った軽量Linuxイメージを使う
 FROM ruby:3.4.8-slim
@@ -35,5 +37,6 @@ EXPOSE 3001
 
 # コンテナ起動時に、まずentrypoint.shを実行
 ENTRYPOINT ["./entrypoint.sh"]
-# 0.0.0.0にして、コンテナ外から来る通信も受けられるようにする
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3001"]
+
+# デバッガ(rdbg)のTCP接続を待ち受けた上で、Railsサーバーを起動する
+# CMD bundle exec rdbg --open --nonstop --host 0.0.0.0 --port 12345 -c -- bundle exec rails server -b 0.0.0.0 -p 3001

@@ -1,0 +1,13 @@
+    {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "rdbg",
+                "name": "Attach to Docker",
+                "request": "attach",
+                "debugPort": "12345",
+                "localfsMap": "${workspaceFolder}:/app",
+                "rdbgPath": "/Users/toshiyuki.kume/.rbenv/shims/rdbg"
+            }
+        ]
+    }

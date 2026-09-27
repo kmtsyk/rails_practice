@@ -64,6 +64,30 @@ docker compose down          # コンテナを停止・削除（gem のボリュ
 docker compose down -v       # ボリュームも削除（gem を入れ直したいとき）
 ```
 
+### 5. 再作成
+
+#### 古いコンテナを完全破棄して再構築
+```bash
+docker compose down
+docker compose build --no-cache
+# 古いコンテナの残骸を無視し、新しい設定ファイルに基づいてコンテナを強制的に新規作成
+docker compose up --force-recreate
+```
+
+#### イメージから
+```bash
+docker compose build --no-cache
+docker compose up -d
+```
+
+#### 完全に更地にする：ボリュームごと破棄
+```bash
+docker compose down -v
+docker compose up -d --build
+docker compose run --rm web bin/rails db:reset
+```
+
+
 `docker compose up` をフォアグラウンドで実行している場合は `Ctrl + C` でも停止できる。
 
 ## よく使うコマンド
@@ -118,3 +142,7 @@ docker compose up
 | gem が見つからない / bundle エラー | `docker compose down -v` でボリュームを消してから `docker compose build` |
 | DB 関連のエラー | `docker compose run --rm web bin/rails db:prepare` を実行する |
 | 変更がブラウザに反映されない | `docker compose restart web` |
+
+---
+
+# aaaa
